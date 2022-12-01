@@ -30,7 +30,7 @@ public class Administrator {
                 "pprice int(5) unsigned not null," +
                 "mid int(2) unsigned not null," +
                 "cid int(1) unsigned not null," +
-                "pwarrentyperiod int(2) unsigned not null," +
+                "pwarrantyperiod int(2) unsigned not null," +
                 "pavailablequantity int(2) unsigned not null," +
                 " PRIMARY KEY ( pid ))";
         String tb4 = "CREATE TABLE salesperson " +
@@ -139,7 +139,7 @@ public class Administrator {
                                 String temp3[]   = scan.nextLine().split("\t");
 //                                    System.out.println(Arrays.toString(temp3));
                                 String updateString = "INSERT INTO part (pid, pname, pprice, mid, cid," +
-                                        "pwarrentyperiod, pavailablequantity ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                                        "pwarrantyperiod, pavailablequantity ) VALUES (?, ?, ?, ?, ?, ?, ?)";
                                 PreparedStatement insertrecord = conn.prepareStatement(updateString);
                                 insertrecord.setInt( 1, Integer.parseInt(temp3[0]) );
                                 insertrecord.setString(2,temp3[1]);

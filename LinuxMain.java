@@ -2,10 +2,10 @@ import java.sql.*;
 import java.util.*;
 import java.lang.*;
 
-public class MainMenu {
-    static final String DB_URL = "jdbc:mysql://localhost:3306/asm3?useSSL=false";
-    static final String USER = "root";
-    static final String PASS = "password";
+public class LinuxMain {
+    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2712/Group52?autoReconnect=true&useSSL=false";
+    static final String USER = "Group52";
+    static final String PASS = "CSCI3170";
 
     public static void main(String[] args) throws SQLException {
 
@@ -23,7 +23,7 @@ public class MainMenu {
             Scanner menu_scan = new Scanner(System.in);
             int menu_choice = menu_scan.nextInt();
             if(menu_choice == 1){
-                Administrator admin = new Administrator();
+                LinuxAdmin admin = new LinuxAdmin();
                 admin.Administrator_menu();
             }else if(menu_choice == 2){
 

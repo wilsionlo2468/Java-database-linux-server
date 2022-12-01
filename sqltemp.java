@@ -8,7 +8,7 @@ import java.lang.*;
 public class sqltemp {
     static final String DB_URL = "jdbc:mysql://localhost:3306/asm3?useSSL=false";
     static final String USER = "root";
-    static final String PASS = "baibai88";
+    static final String PASS = "password";
     static String select_all_query = "SELECT * FROM ";
 
     public static void main(String[] args) throws SQLException {

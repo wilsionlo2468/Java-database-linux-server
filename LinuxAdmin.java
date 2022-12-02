@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class LinuxAdmin {
-    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2712/username?autoRe connect=true&useSSL=false";
+    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2712/username?autoReconnect=true&useSSL=false";
     static final String USER = "Group52";
     static final String PASS = "CSCI3170";
     static String select_all_query = "SELECT * FROM ";

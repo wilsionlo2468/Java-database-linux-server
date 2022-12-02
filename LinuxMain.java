@@ -16,7 +16,7 @@ public class LinuxMain {
                     "What kinds of operation would you like to perform?\n" +
                     "1. Operations for administrator\n" +
                     "2. Operations for salesperson\n" +
-                    "3. Operations for manager" +
+                    "3. Operations for manager\n" +
                     "4. Exit this program\n" +
                     "Enter Your Choice:";
             System.out.print(main_manu);
@@ -38,7 +38,8 @@ public class LinuxMain {
         System.out.println("END MAIN");
     }//end main
 }//end main clase
-
+//mysql --host=projgw --port=2633 -u Group52 -p
+//CSCI3170
 
 /*
   insert into table(colname1 , colname2) values('value1','value2'); //insert statement

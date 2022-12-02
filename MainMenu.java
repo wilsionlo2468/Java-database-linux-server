@@ -16,7 +16,7 @@ public class MainMenu {
                     "What kinds of operation would you like to perform?\n" +
                     "1. Operations for administrator\n" +
                     "2. Operations for salesperson\n" +
-                    "3. Operations for manager" +
+                    "3. Operations for manager\n" +
                     "4. Exit this program\n" +
                     "Enter Your Choice:";
             System.out.print(main_manu);
@@ -26,6 +26,8 @@ public class MainMenu {
                 Administrator admin = new Administrator();
                 admin.Administrator_menu();
             }else if(menu_choice == 2){
+                Salesperson sales = new Salesperson();
+                sales.Salesperson_main();
 
             }else if(menu_choice==3){
 
@@ -39,8 +41,3 @@ public class MainMenu {
     }//end main
 }//end main clase
 
-
-/*
-  insert into table(colname1 , colname2) values('value1','value2'); //insert statement
-  //format(GETDATE() ,  'MM/dd/yyyy')
-        */

@@ -3,7 +3,7 @@ import java.util.*;
 import java.lang.*;
 
 public class LinuxMain {
-    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2712/Group52?autoReconnect=true&useSSL=false";
+    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2633/db52?autoReconnect=true&useSSL=false";
     static final String USER = "Group52";
     static final String PASS = "CSCI3170";
 
@@ -26,7 +26,8 @@ public class LinuxMain {
                 LinuxAdmin admin = new LinuxAdmin();
                 admin.Administrator_menu();
             }else if(menu_choice == 2){
-
+                LinuxSales sales = new LinuxSales();
+                sales.Salesperson();
             }else if(menu_choice==3){
 
             }else if(menu_choice == 4){

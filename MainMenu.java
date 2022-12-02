@@ -28,7 +28,6 @@ public class MainMenu {
             }else if(menu_choice == 2){
                 Salesperson sales = new Salesperson();
                 sales.Salesperson_main();
-
             }else if(menu_choice==3){
 
             }else if(menu_choice == 4){

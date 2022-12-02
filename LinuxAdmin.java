@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class LinuxAdmin {
-    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2712/username?autoReconnect=true&useSSL=false";
+    static final String DB_URL = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2633/db52?autoReconnect=true&useSSL=false";
     static final String USER = "Group52";
     static final String PASS = "CSCI3170";
     static String select_all_query = "SELECT * FROM ";
@@ -107,7 +107,7 @@ public class LinuxAdmin {
                         // operation 3 : operation3 load all table
                         System.out.println("loading all table");
                         try {
-                            File file = new File("src/category.txt");
+                            File file = new File("./category.txt");
                             scan = new Scanner(file);
                             while (scan.hasNextLine()){
                                 String temp[]   = scan.nextLine().split("\t");
@@ -119,7 +119,7 @@ public class LinuxAdmin {
                                 insertrecord.executeUpdate();
                             }
 
-                            file = new File("src/manufacturer.txt");
+                            file = new File("./manufacturer.txt");
                             scan = new Scanner(file);
                             while (scan.hasNextLine()){
                                 String temp2[]   = scan.nextLine().split("\t");
@@ -133,7 +133,7 @@ public class LinuxAdmin {
                                 insertrecord.setInt(4,Integer.parseInt(temp2[3]) );
                                 insertrecord.executeUpdate();
                             }
-                            file = new File("src/part.txt");
+                            file = new File("./part.txt");
                             scan = new Scanner(file);
                             while (scan.hasNextLine()){
                                 String temp3[]   = scan.nextLine().split("\t");
@@ -151,7 +151,7 @@ public class LinuxAdmin {
                                 insertrecord.executeUpdate();
                             }
 
-                            file = new File("src/salesperson.txt");
+                            file = new File("./salesperson.txt");
                             scan = new Scanner(file);
                             while (scan.hasNextLine()){
                                 String temp4[]   = scan.nextLine().split("\t");
@@ -167,7 +167,7 @@ public class LinuxAdmin {
                                 insertrecord.executeUpdate();
                             }
 
-                            file = new File("src/transaction.txt");
+                            file = new File("./transaction.txt");
                             scan = new Scanner(file);
                             while (scan.hasNextLine()) {
                                 String temp5[] = scan.nextLine().split("\t");

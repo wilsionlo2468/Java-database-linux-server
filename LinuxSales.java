@@ -8,7 +8,6 @@ import java.util.Date;
 
 
 public class LinuxSales {
-
     public static String dbAddress = "jdbc:mysql://projgw.cse.cuhk.edu.hk:2633/db52?autoReconnect=true&useSSL=false";
     public static String dbUsername = "Group52";
     public static String dbPassword = "CSCI3170";
@@ -17,11 +16,10 @@ public class LinuxSales {
 
     public static void search() {
         Statement stmt = null;
-        String search = """
-                    Choose the search criterion:
-                    1. Part Name
-                    2. Manufacturer Name
-                    Choose the search criterion: \s""";
+        String search = "Choose the search criterion:\n" +
+                "1. Part Name\n" +
+                "2. Manufacturer Name\n" +
+                "Choose the search criterion: ";
 
         try {
             System.out.print(search);
@@ -44,16 +42,14 @@ public class LinuxSales {
             stmt = con.createStatement();
 
             //for search by part name
-            String psql = """
-                        SELECT P.pid, P.pname, M.mname, C.cname, P.pavailablequantity, P.pwarrantyperiod, P.pprice
-                        FROM part P, manufacturer M, category C
-                        WHERE P.mid = M.mid AND P.cid = C.cid AND P.pname = """ ;
+            String psql = "SELECT P.pid, P.pname, M.mname, C.cname, P.pavailablequantity, P.pwarrantyperiod, P.pprice " +
+                    "FROM part P, manufacturer M, category C " +
+                    "WHERE P.mid = M.mid AND P.cid = C.cid AND P.pname = " ;
 
             //for search by manufacturer name
-            String msql = """
-                        SELECT P.pid, P.pname, M.mname, C.cname, P.pavailablequantity, P.pwarrantyperiod, P.pprice
-                        FROM part P, manufacturer M, category C
-                        WHERE P.mid = M.mid AND P.cid = C.cid AND M.mname = """ ;
+            String msql = "SELECT P.pid, P.pname, M.mname, C.cname, P.pavailablequantity, P.pwarrantyperiod, P.pprice " +
+                    "FROM part P, manufacturer M, category C " +
+                    "WHERE P.mid = M.mid AND P.cid = C.cid AND M.mname = " ;
             String a = "'" + search2 + "'";
 
             if(search1 == 1){
@@ -152,10 +148,9 @@ public class LinuxSales {
 
             stmt = con.createStatement();
             //find quantity
-            String sql = """
-                    SELECT pavailablequantity
-                    FROM part
-                    WHERE pid = """;
+            String sql = "SELECT pavailablequantity " +
+                    "FROM part " +
+                    "WHERE pid = ";
             String fsql = sql  + String.valueOf(search1)  ;
             r = stmt.executeQuery(fsql);
 
@@ -166,56 +161,43 @@ public class LinuxSales {
             while (r.next()) {
                 t = r.getInt(1);
             }
-            Integer ts1 = null;
-            Integer ts2 = null;
-            String maxsid = """
-                            SELECT MAX(sid)
-                            FROM salesperson""";
-            ResultSet s1 = stmt.executeQuery(maxsid);
+            Integer ts1 = null; //for finding the sid where it exists
+            //find sid
+            String sid = "SELECT sid " +
+                    "FROM salesperson " +
+                    "WHERE sid = ";
+            String esid = sid + search2;
+            ResultSet s1 = stmt.executeQuery(esid);
             while (s1.next()) {
                 ts1 = s1.getInt(1);
             }
-            String minsid = """
-                            SELECT MIN(sid)
-                            FROM salesperson""";
-            ResultSet s2 = stmt.executeQuery(minsid);
-            while (s2.next()) {
-                ts2 = s2.getInt(1);
-            }
-            if(t == null || search2 > ts1 || search2 < ts2){
-                // if the part does not exist
-                Integer tp1 = null;
-                Integer tp2 = null;
-                String maxpart = """
-                            SELECT MAX(pid)
-                            FROM part""";
-                ResultSet p1 = stmt.executeQuery(maxpart);
+
+            if(t == null || ts1 == null){
+                Integer tp1 = null;// for storing the pid where it exists
+                //find pid
+                String part = "SELECT pid " +
+                        "FROM part " +
+                        "WHERE pid = ";
+                String pid = part + search1;
+                ResultSet p1 = stmt.executeQuery(pid);
                 while (p1.next()) {
                     tp1 = p1.getInt(1);
                 }
-                String minpart = """
-                            SELECT MIN(pid)
-                            FROM part""";
-                ResultSet p2 = stmt.executeQuery(minpart);
-                while (p2.next()) {
-                    tp2 = p2.getInt(1);
-                }
-                if (search1 > tp1 || search1 < tp2) {
+                //check sid
+                if (tp1 == null) {
                     System.out.println("The part is unavailable! Please choose another part.");
                 }
-
-
-                if (search2 > ts1 || search2 < ts2) {
+                //check sid
+                if (ts1 == null) {
                     System.out.println("The Salesperson ID does not exist.");
                 }
 
             }else if( t > 0 ) {
                 //for quantity more than 1
                 System.out.print("Product: ");
-                String sql1 = """
-                    SELECT P.pname, M.mname
-                    FROM part P, manufacturer M
-                    WHERE P.cid = M.mid AND P.pid = """;
+                String sql1 = "SELECT P.pname, M.mname " +
+                        "FROM part P, manufacturer M " +
+                        "WHERE P.cid = M.mid AND P.pid = ";
                 String fsql1 = sql1 + String.valueOf(search1) ;
                 ResultSet r1 = stmt.executeQuery(fsql1);
 
@@ -225,9 +207,8 @@ public class LinuxSales {
                 }
                 Integer w = t - 1; //quantity - 1
                 //update quantity
-                String sql0 = """
-                    UPDATE part
-                    SET pavailablequantity = """;
+                String sql0 = "UPDATE part " +
+                        "SET pavailablequantity = ";
                 String sql00 = " WHERE pid = ";
                 String fsql0 = sql0 + w + sql00 + search1;
                 stmt.executeUpdate(fsql0);
@@ -237,9 +218,8 @@ public class LinuxSales {
 
                 Integer tid = null; //for storing transaction ID
                 //finding the last transaction ID
-                String tran = """
-                            SELECT MAX(tid)
-                            FROM Transaction""";
+                String tran = "SELECT MAX(tid) " +
+                        "FROM transaction";
                 ResultSet tran1 = stmt.executeQuery(tran);
                 if(tran1 != null){
                     while (tran1.next()) {
@@ -250,9 +230,8 @@ public class LinuxSales {
                     tid = 1;
                 }
 
-                String isql = """
-                            INSERT INTO transaction(tid, pid, sid, tdate)
-                            VALUES(""";
+                String isql = "INSERT INTO transaction(tid, pid, sid, tdate)" +
+                        "VALUES(";
 
                 //find today's date
                 Date d = new Date();
@@ -284,15 +263,15 @@ public class LinuxSales {
     }
 
 
-    public static void Salesperson() throws SQLException {
 
-        String openning = """
-                -----Operations for salesperson menu-----
-                What kinds of operation would you like to perform?
-                1. Search for parts
-                2. Sell a part
-                3. Return to the main menu
-                Enter Your Choose:\s""";
+            public static void Salesperson() throws SQLException {
+
+                String openning = "-----Operations for salesperson menu-----\n" +
+                        "What kinds of operation would you like to perform?\n" +
+                        "1. Search for parts\n" +
+                        "2. Sell a part\n" +
+                        "3. Return to the main menu\n" +
+                        "Enter Your Choose: ";
 
         try {
             con = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);

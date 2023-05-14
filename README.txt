@@ -11,9 +11,9 @@ Methods of compilation and execution
 1.Group52
 
 2.members
-LO WA SUN 1155160172
-Ko Hon Lam 1155159095
-Wong Pui Yee 1155127529
+LO WA SUN 1155------
+Ko Hon Lam 1155------
+Wong Pui Yee 1155------
 
 3.List of files
 
